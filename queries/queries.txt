@@ -1,0 +1,81 @@
+SELECT binding_models.model_name, binding_models.brand_id
+FROM binding_models
+JOIN brands ON binding_models.brand_id = brands.id
+WHERE brands.id = 3
+
+
+
+
+MARKER QUERY INSERT
+----------------------
+
+INSERT INTO binding_models (brand_id, model_name)
+SELECT b.id, m.model_name
+FROM brands AS b
+JOIN (
+  /* ===== CURRENT RETAIL (MARKER) ===== */
+  SELECT 'Jester X 16 MWerks' AS model_name
+  UNION SELECT 'Griffon X 13 MWerks'
+  UNION SELECT 'Comp 20'
+  UNION SELECT 'Comp 16 GW'
+  UNION SELECT 'Comp 12 GW'
+  UNION SELECT 'Comp 16'
+  UNION SELECT 'Comp 12'
+  UNION SELECT 'Comp 10 TCX'
+  UNION SELECT 'Comp 10'
+  UNION SELECT 'Comp Junior 8'
+  UNION SELECT 'Duke PT 13'
+  UNION SELECT 'Duke PT 11'
+  UNION SELECT 'FS JR Tour'
+  UNION SELECT 'Squire 12 TCX'
+  UNION SELECT 'Squire 11'
+  UNION SELECT 'Squire 10'
+  UNION SELECT 'Duke PT 16'
+  UNION SELECT 'Jester Pro ID'
+  UNION SELECT 'Jester 16 ID'
+  UNION SELECT 'Griffon 13 ID'
+  UNION SELECT 'Tour 12 EPF'
+  UNION SELECT 'Tour 10'
+  UNION SELECT '10.0 TP'
+  UNION SELECT 'Free 7'
+  UNION SELECT '7.0'
+  UNION SELECT '4.5'
+
+  /* ===== NON-CURRENT RETAIL (MARKER) ===== */
+  UNION SELECT 'Comp 20.0 NG'
+  UNION SELECT 'Xcomp 16 GW'
+  UNION SELECT 'Xcomp 12 GW'
+  UNION SELECT 'Xcomp 16'
+  UNION SELECT 'Xcomp 12'
+  UNION SELECT 'Baron EPF'
+  UNION SELECT 'Race 10 TCX'
+  UNION SELECT 'Race 10'
+  UNION SELECT 'Race 8 Junior'
+  UNION SELECT 'Duke PT 12'
+  UNION SELECT 'Xcomp 18'
+  UNION SELECT 'Squire 11 ID'
+  UNION SELECT '12.0 TPX'
+  UNION SELECT '11.0 TP'
+  UNION SELECT 'Kingpin 10 (6 pack toe)'
+  UNION SELECT 'Kingpin 13 (6 pack toe)'
+  UNION SELECT 'Duke Pro EPF'
+  UNION SELECT 'Race Xcell 16 GW'
+  UNION SELECT 'Race Xcell 12 GW'
+  UNION SELECT 'Race Xcell 18'
+  UNION SELECT 'Race Xcell 16'
+  UNION SELECT 'Race Xcell 12'
+  UNION SELECT 'Jester 18 Pro (flat AFD)'
+  UNION SELECT 'Duke EPF'
+  UNION SELECT 'Free 8'
+  UNION SELECT 'Lord'
+  UNION SELECT 'Squire (toe height adjust only)'
+  UNION SELECT 'Schizo 14'
+  UNION SELECT 'Schizo 11'
+  UNION SELECT 'Free Ten'
+  UNION SELECT 'M7.0 Free'
+  UNION SELECT 'M11.0 TC EPS'
+  UNION SELECT 'M10.0 EPS'
+  UNION SELECT 'M7.0 EPS'
+  UNION SELECT 'M4.5 EPS'
+) AS m
+WHERE b.name = 'MARKER';
